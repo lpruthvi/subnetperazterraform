@@ -74,7 +74,8 @@ resource "aws_eip" "nat" {
 # NAT Gateway
 resource "aws_nat_gateway" "nat-gw" {
   allocation_id = "${aws_eip.nat.id}"
-  subnet_id     = "${element(aws_subnet.private_subnet.*.id, 1)}"
+  # subnet_id     = "${element(aws_subnet.private_subnet.*.id, 1)}"
+  subnet_id     = "${element(aws_subnet.public_subnet.*.id, 1)}"
   depends_on    = ["aws_internet_gateway.myInternetGateway"]
 }
 
